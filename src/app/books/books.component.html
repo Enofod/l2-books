@@ -1,0 +1,58 @@
+<div class="p-4">
+    <div class="text-lg font-semibold">Books</div>
+    <!-- <p class="pt-1">Select a class and check where you can get all the spellbooks you need.</p>
+    <form class="pt-6">
+        <mat-form-field>
+            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelect($event)">
+                @for (option of filteredOptions | async; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+            </mat-autocomplete>
+        </mat-form-field>
+    </form> -->
+
+    <table class="table-auto">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Used by Class</th>
+                <th>Buy / Drop</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(booksToDisplay$ | async; as booksToDisplay) {
+            @for (book of booksToDisplay; track book.itemName) {
+            <tr>
+                <td class="border p-2"><a class="text-blue-800" target="_blank" [href]="'https://l2hub.info/c4/items/' + book.itemName">{{
+                        book.name}}</a></td>
+                <td class="border  p-2">
+                    <uL class="list-disc pl-8">
+                        @for (clazz of book.used_classes; track clazz) {
+                        <li>{{ clazz }}</li>
+                        }
+                    </uL>
+                </td>
+                <td class="border p-2">
+                    @if(book.available_at_shop) {
+                    <div class="pl-4">Buy at shop</div>
+                    }
+                    @else {
+                    <uL class="list-disc pl-8">
+                        @for (drop of book.drop_info; track drop) {
+                        <li><a class="text-blue-800" target="_blank" [href]="'https://l2hub.info/c4/npcs/' + drop.npcName">{{ drop.name }} - chance: {{ drop.chance }}</a></li>
+                        }
+                    </uL>
+                    }
+                </td>
+            </tr>
+
+            }
+            }
+        </tbody>
+    </table>
+
+
+
+
+</div>

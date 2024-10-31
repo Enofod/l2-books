@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// .mat-mdc-form-field {
+//     height: 50px;
+// }
+
+.mat-mdc-form-field-subscript-wrapper {
+    height: 0px;
+}
+
+.mat-mdc-input-element {
+    padding: 4px;
+}
+
+.mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
+    top: 0 !important
+}
